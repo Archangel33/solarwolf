@@ -1,6 +1,6 @@
-require("colorbuddy").colorscheme("solarwolf")
-
 local cb = require("colorbuddy")
+
+cb.colorscheme("solarwolf")
 
 local defaults = {
 	comment_italics = true,
@@ -39,10 +39,10 @@ function M.setup(opts)
 	vim.g.colors_name = "solarwolf"
 
 	local Color = M.Color
-	local colors = M.colors
+	local colors = M.c
 	local Group = M.Group
-	local groups = M.groups
-	local styles = M.styles
+	local groups = M.g
+	local styles = M.s
 
 	Color.new("base03", "#002b36")
 	Color.new("base02", "#073642")
@@ -83,9 +83,9 @@ function M.setup(opts)
 
 	-- any statement, conditional, repeat (for, do while), label, operator
 	Group.new("Statement", colors.green)
-	Group.new("PreProc", colors.red) -- was orange
+	Group.new("PreProc", colors.red)
 	Group.new("Type", colors.yellow)
-	Group.new("Special", colors.orange) -- was red
+	Group.new("Special", colors.orange)
 	Group.new("SpecialKey", colors.base00)
 	Group.new("Underlined", colors.violet)
 	Group.new("Strikethrough", colors.base01, colors.none, styles.strikethrough)
@@ -437,98 +437,96 @@ function M.setup(opts)
 	Group.new("NavicText", colors.base0)
 	Group.new("NavicSeparator", colors.yellow)
 
-	-- group names with an at sign throw an error until they gain support in 0.8.0
-	if vim.fn.has("nvim-0.8.0") then
-		-- XML-like tags
-		Group.new("@tag", colors.green)
-		Group.new("@tag.attribute", colors.blue)
-		Group.new("@tag.delimiter", colors.red)
+	-- group names with an at sign throw an error neovime < 0.8.0
+	-- XML-like tags
+	Group.new("@tag", colors.green)
+	Group.new("@tag.attribute", colors.blue)
+	Group.new("@tag.delimiter", colors.red)
 
-		Group.new("@none", colors.none)
-		Group.link("@comment", groups.Comment)
-		Group.link("@error", groups.Error)
-		Group.link("@preproc", groups.PreProc)
-		Group.link("@define", groups.Define)
-		Group.link("@operator", groups.Operator)
+	Group.new("@none", colors.none)
+	Group.link("@comment", groups.Comment)
+	Group.link("@error", groups.Error)
+	Group.link("@preproc", groups.PreProc)
+	Group.link("@define", groups.Define)
+	Group.link("@operator", groups.Operator)
 
-		Group.link("@punctuation.delimiter", groups.Statement)
-		Group.link("@punctuation.bracket", groups.Delimiter)
-		Group.link("@punctuation.special", groups.Delimiter)
+	Group.link("@punctuation.delimiter", groups.Statement)
+	Group.link("@punctuation.bracket", groups.Delimiter)
+	Group.link("@punctuation.special", groups.Delimiter)
 
-		Group.link("@string", groups.String)
-		Group.link("@string.regex", groups.String)
-		Group.link("@string.escape", groups.Special)
-		Group.link("@string.special", groups.Special)
+	Group.link("@string", groups.String)
+	Group.link("@string.regex", groups.String)
+	Group.link("@string.escape", groups.Special)
+	Group.link("@string.special", groups.Special)
 
-		Group.link("@character", groups.Character)
-		Group.link("@character.special", groups.Special)
+	Group.link("@character", groups.Character)
+	Group.link("@character.special", groups.Special)
 
-		Group.link("@boolean", groups.Boolean)
-		Group.link("@number", groups.Number)
-		Group.link("@float", groups.Float)
+	Group.link("@boolean", groups.Boolean)
+	Group.link("@number", groups.Number)
+	Group.link("@float", groups.Float)
 
-		Group.link("@function", groups.Function)
-		Group.link("@function.call", groups.Function)
-		Group.link("@function.builtin", groups.Function)
-		Group.link("@function.macro", groups.Macro)
+	Group.link("@function", groups.Function)
+	Group.link("@function.call", groups.Function)
+	Group.link("@function.builtin", groups.Function)
+	Group.link("@function.macro", groups.Macro)
 
-		Group.link("@method", groups.Function)
-		Group.link("@method.call", groups.Function)
+	Group.link("@method", groups.Function)
+	Group.link("@method.call", groups.Function)
 
-		Group.link("@constructor", groups.Special)
-		-- not sure about this one, special is true and kinda nice?
-		Group.link("@parameter", groups.Special)
+	Group.link("@constructor", groups.Special)
+	-- not sure about this one, special is true and kinda nice?
+	Group.link("@parameter", groups.Special)
 
-		Group.link("@keyword", groups.Keyword)
-		Group.link("@keyword.function", groups.Keyword)
-		Group.link("@keyword.operator", groups.Keyword)
-		Group.link("@keyword.return", groups.Keyword)
+	Group.link("@keyword", groups.Keyword)
+	Group.link("@keyword.function", groups.Keyword)
+	Group.link("@keyword.operator", groups.Keyword)
+	Group.link("@keyword.return", groups.Keyword)
 
-		Group.link("@conditional", groups.Conditional)
-		Group.link("@repeat", groups.Repeat)
-		Group.link("@debug", groups.Debug)
-		Group.link("@label", groups.Label)
-		Group.link("@include", groups.Include)
-		Group.link("@exception", groups.Exception)
+	Group.link("@conditional", groups.Conditional)
+	Group.link("@repeat", groups.Repeat)
+	Group.link("@debug", groups.Debug)
+	Group.link("@label", groups.Label)
+	Group.link("@include", groups.Include)
+	Group.link("@exception", groups.Exception)
 
-		Group.link("@type", groups.Type)
-		Group.link("@type.builtin", groups.Type)
-		Group.link("@type.qualifier", groups.Type)
-		Group.link("@type.definition", groups.Typedef)
+	Group.link("@type", groups.Type)
+	Group.link("@type.builtin", groups.Type)
+	Group.link("@type.qualifier", groups.Type)
+	Group.link("@type.definition", groups.Typedef)
 
-		Group.link("@storageclass", groups.StorageClass)
-		Group.link("@attribute", groups.Identifier)
-		Group.link("@field", groups.Identifier)
-		Group.link("@property", groups.Identifier)
+	Group.link("@storageclass", groups.StorageClass)
+	Group.link("@attribute", groups.Identifier)
+	Group.link("@field", groups.Identifier)
+	Group.link("@property", groups.Identifier)
 
-		Group.new("@variable", colors.base0)
-		Group.link("@variable.builtin", groups.Special)
+	Group.new("@variable", colors.base0)
+	Group.link("@variable.builtin", groups.Special)
 
-		Group.link("@constant", groups.Constant)
-		Group.link("@constant.builtin", groups.Type)
-		Group.link("@constant.macro", groups.Define)
+	Group.link("@constant", groups.Constant)
+	Group.link("@constant.builtin", groups.Type)
+	Group.link("@constant.macro", groups.Define)
 
-		Group.link("@namespace", groups.Identifier)
-		Group.link("@symbol", groups.Identifier)
+	Group.link("@namespace", groups.Identifier)
+	Group.link("@symbol", groups.Identifier)
 
-		Group.link("@text", groups.Normal)
-		Group.new("@text.strong", colors.base1, colors.none, styles.bold)
-		Group.new("@text.emphasis", colors.base1, colors.none, styles.bold)
-		Group.link("@text.underline", groups.Underlined)
-		Group.link("@text.strike", groups.Strikethrough)
-		Group.link("@text.title", groups.Title)
-		Group.link("@text.literal", groups.String)
-		Group.link("@text.uri", groups.Underlined)
-		Group.link("@text.math", groups.Special)
-		Group.link("@text.environment", groups.Macro)
-		Group.link("@text.environment.name", groups.Type)
-		Group.link("@text.reference", groups.Constant)
+	Group.link("@text", groups.Normal)
+	Group.new("@text.strong", colors.base1, colors.none, styles.bold)
+	Group.new("@text.emphasis", colors.base1, colors.none, styles.bold)
+	Group.link("@text.underline", groups.Underlined)
+	Group.link("@text.strike", groups.Strikethrough)
+	Group.link("@text.title", groups.Title)
+	Group.link("@text.literal", groups.String)
+	Group.link("@text.uri", groups.Underlined)
+	Group.link("@text.math", groups.Special)
+	Group.link("@text.environment", groups.Macro)
+	Group.link("@text.environment.name", groups.Type)
+	Group.link("@text.reference", groups.Constant)
 
-		Group.link("@text.todo", groups.Todo)
-		Group.link("@text.note", groups.Comment)
-		Group.link("@text.warning", groups.WarningMsg)
-		Group.new("@text.danger", colors.red, colors.none, styles.bold)
-	end
+	Group.link("@text.todo", groups.Todo)
+	Group.link("@text.note", groups.Comment)
+	Group.link("@text.warning", groups.WarningMsg)
+	Group.new("@text.danger", colors.red, colors.none, styles.bold)
 
 	function M.translate(group)
 		if vim.fn.has("nvim-0.6.0") == 0 then
