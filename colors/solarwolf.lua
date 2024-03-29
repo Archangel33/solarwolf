@@ -141,7 +141,7 @@ function M.setup(opts)
 	Group.new("DiffDelete", colors.red, colors.base02, styles.bold)
 	Group.new("DiffText", colors.blue, colors.base02, styles.bold, colors.blue)
 
-	Group.new("SignColumn", colors.base0, colors.none, styles.NONE)
+	Group.new("SignColumn", colors.base0, colors.green, styles.NONE)
 	Group.new("Conceal", colors.blue, colors.none, styles.NONE)
 
 	Group.new("SpellBad", colors.none, colors.none, styles.undercurl, colors.red)
