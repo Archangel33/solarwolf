@@ -25,10 +25,10 @@ function M.setup(opts)
 	if vim.g.colors_name then
 		vim.cmd("hi clear")
 	end
-
-	if vim.fn.exists("syntax_on") then
-		vim.cmd("syntax reset")
-	end
+	--
+	-- if vim.fn.exists("syntax_on") then
+	-- 	vim.cmd("syntax reset")
+	-- end
 
 	vim.g.colors_name = "solarwolf"
 
@@ -169,10 +169,10 @@ function M.setup(opts)
 	-- Group.new("CursorLine", c.none, c.base02, s.NONE, c.base1)
 	-- Group.new("CursorLineNr", c.none, c.none, s.NONE, c.base1)
 	-- Group.new("ColorColumn", c.none, c.base02, s.NONE)
-	-- Group.new("Cursor", c.base03, c.base0, s.NONE)
-	-- Group.link("lCursor", g.Cursor)
-	-- Group.link("TermCursor", g.Cursor)
-	-- Group.new("TermCursorNC", c.base03, c.base01)
+	Group.new("Cursor", c.base03, c.base0, s.NONE)
+	Group.link("lCursor", g.Cursor)
+	Group.link("TermCursor", g.Cursor)
+	Group.new("TermCursorNC", c.base03, c.base01)
 	--
 	-- Group.new("MatchParen", c.red, c.base01, s.bold)
 	--
